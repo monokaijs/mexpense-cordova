@@ -57,3 +57,17 @@ body {
     }
   }
 }
+
+.app-fab {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 32px;
+  bottom: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--f7-theme-color);
+  color: var(--f7-page-bg-color);
+}

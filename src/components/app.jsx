@@ -30,14 +30,6 @@ import {AppConfig} from "@/configs/app.config";
 import {StorageService} from "@/services/StorageService";
 
 const MyApp = () => {
-  // Login screen demo data
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const alertLoginData = () => {
-    f7.dialog.alert('Username: ' + username + '<br>Password: ' + password, () => {
-      f7.loginScreen.close();
-    });
-  }
   f7ready(async () => {
     // Init cordova APIs (see cordova-app.js)
     if (f7.device.cordova) {

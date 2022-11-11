@@ -5,7 +5,7 @@ const device = getDevice();
 
 export const AppConfig = {
   name: 'M-Expense', // App name
-  theme: 'android', // Automatic theme detection
+  theme: 'md', // Automatic theme detection
   id: 'com.monokaijs.mexpense',
   darkMode: true,
   routes: routes,
