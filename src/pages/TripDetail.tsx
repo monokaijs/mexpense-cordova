@@ -13,8 +13,11 @@ import {
 } from 'framework7-react';
 import {Expense, Trip} from "@/types";
 import {StorageService} from "@/services/StorageService";
+import {useAppDispatch} from "@/redux/store";
+import {loadAppTrips} from "@/redux/actions/app.action";
 
 const TripDetailPage = (props: any) => {
+  const dispatch = useAppDispatch();
   const {f7route, f7router} = props;
   const [trip, setTrip] = useState<Trip | null>(null);
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -29,6 +32,18 @@ const TripDetailPage = (props: any) => {
       });
     });
   }, []);
+
+  const onDelete = () => {
+    if (!trip) return;
+    const dialog = f7router.app.dialog;
+    dialog.confirm("Are sure you want to delete this trip?", () => {
+      dialog.alert("Successfully deleted trip.");
+      StorageService.deleteTrip(trip.id).then(() => {
+        f7router.navigate('/');
+        dispatch(loadAppTrips());
+      });
+    });
+  }
 
   return (
     <Page>
@@ -55,6 +70,7 @@ const TripDetailPage = (props: any) => {
                     iconSize={14}
                     iconMaterial={'delete'}
                     type={'danger'}
+                    onClick={onDelete}
                   >
                     Delete
                   </Button>
