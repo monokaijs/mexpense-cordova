@@ -17,18 +17,29 @@ import {StorageService} from "../services/StorageService";
 import {loadAppTrips} from "@/redux/actions/app.action";
 import {useAppDispatch} from "@/redux/store";
 
-const AddTripPage = () => {
+const AddTripPage = (props: any) => {
+  const {f7route, f7router} = props;
   const dispatch = useAppDispatch();
 
   const [tripName, setTripName] = useState('');
   const [tripDest, setTripDest] = useState('');
   const [tripDesc, setTripDesc] = useState('');
-  const [tripBudget, setTripBudget] = useState('');
+  const [tripBudget, setTripBudget] = useState('0');
   const [tripDate, setTripDate] = useState('');
   const [tripRequiresAssess, setTripRequiresAssess] = useState(false);
 
   // @ts-ignore
   const onFinish = async () => {
+    if (
+      tripName.trim() === '' ||
+      tripDest.trim() === '' ||
+      tripDate.trim() === ''
+    ) {
+      f7router.app.toast.create({
+        text: 'Please input all required fields.'
+      }).open();
+      return;
+    }
     const trip: Trip = {
       id: new Date().getTime(),
       name: tripName,
@@ -40,6 +51,10 @@ const AddTripPage = () => {
     }
     const newTripList = await StorageService.addTrip(trip);
     dispatch(loadAppTrips());
+    f7router.app.toast.create({
+      text: 'New trip added.'
+    }).open();
+    f7router.navigate('/');
   }
 
   return (
@@ -51,7 +66,7 @@ const AddTripPage = () => {
         <ListInput
           value={tripName}
           onChange={e => setTripName(e.target.value)}
-          label="Trip Name"
+          label="Trip Name (Required)"
           type="text"
           placeholder="Trip name"
         ></ListInput>
@@ -59,7 +74,7 @@ const AddTripPage = () => {
         <ListInput
           value={tripDest}
           onChange={e => setTripDest(e.target.value)}
-          label="Destination"
+          label="Destination (Required)"
           type="text"
           placeholder="Destination..."
         ></ListInput>
@@ -67,7 +82,7 @@ const AddTripPage = () => {
         <ListInput
           value={tripDate}
           onChange={e => setTripDate(e.target.value)}
-          label="Date"
+          label="Date (Required)"
           type="date"
           placeholder="Trip date"
         ></ListInput>
@@ -77,7 +92,7 @@ const AddTripPage = () => {
           onChange={e => setTripBudget(e.target.value)}
           label="Budget"
           type="number"
-          placeholder="Destination..."
+          placeholder="Budget"
         ></ListInput>
 
         <ListItem
