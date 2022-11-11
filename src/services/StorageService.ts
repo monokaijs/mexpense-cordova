@@ -43,6 +43,13 @@ export class StorageService {
     return (await this.getAllExpenses()).filter(expense => expense.tripId.toString() === tripId.toString());
   }
 
+  static async deleteTrip(tripId: number) {
+    const trips = await this.getAllTrips();
+    const newList = trips.filter(trip => trip.id !== tripId);
+    await this.setData('trips', newList);
+    return newList;
+  }
+
   static async addTrip(newTrip: Trip) {
     const trips = await this.getAllTrips();
     trips.push(newTrip);
