@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Page,
   Icon, List, ListItem, Card, CardContent
@@ -10,6 +10,7 @@ import {useAppSelector} from "@/redux/store";
 const HomePage = (props: any) => {
   const {f7route, f7router} = props;
   const {trips} = useAppSelector(state => state.app);
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <Page name="home">
@@ -24,7 +25,9 @@ const HomePage = (props: any) => {
           className={'search-box'}
         >
           <input
+            value={searchQuery}
             placeholder={'Search...'}
+            onChange={e => setSearchQuery(e.target.value)}
           />
           <Icon className={'search-icon'} material={'search'}/>
         </div>
@@ -32,8 +35,8 @@ const HomePage = (props: any) => {
       <FAB icon={'add'} onClick={() => {
         f7router.navigate('/add-trip/');
       }}/>
-      {trips.map(trip => (
-        <Card className={'item-trip'}>
+      {trips.filter(trip => trip.name.toLowerCase().includes(searchQuery.toLowerCase())).map((trip, id) => (
+        <Card className={'item-trip'} key={'trip' + id}>
           <CardContent>
             <div className={'trip-name'}>
               {trip.name}
