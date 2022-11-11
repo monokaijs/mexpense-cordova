@@ -7,3 +7,12 @@ export interface Trip {
   date: string;
   requiresRiskAssessment: boolean;
 }
+
+export interface Expense {
+  id: number;
+  tripId: number;
+  name: string;
+  category: string;
+  cost: number;
+  description: string;
+}
