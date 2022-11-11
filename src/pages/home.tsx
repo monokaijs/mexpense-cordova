@@ -36,16 +36,23 @@ const HomePage = (props: any) => {
         f7router.navigate('/add-trip/');
       }}/>
       {trips.filter(trip => trip.name.toLowerCase().includes(searchQuery.toLowerCase())).map((trip, id) => (
-        <Card className={'item-trip'} key={'trip' + id}>
-          <CardContent>
-            <div className={'trip-name'}>
-              {trip.name}
-            </div>
-            <div className={'trip-destination'}>
-              {trip.destination}
-            </div>
-          </CardContent>
-        </Card>
+        <a
+          href={'/trip/'}
+          key={'trip' + id}
+        >
+          <Card
+            className={'item-trip'}
+          >
+            <CardContent>
+              <div className={'trip-name'}>
+                {trip.name}
+              </div>
+              <div className={'trip-destination'}>
+                {trip.destination}
+              </div>
+            </CardContent>
+          </Card>
+        </a>
       ))}
     </Page>
   );
