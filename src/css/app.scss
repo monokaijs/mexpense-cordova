@@ -63,11 +63,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 32px;
-  bottom: 32px;
-  width: 48px;
-  height: 48px;
+  right: 32pt;
+  bottom: 32pt;
+  width: 48pt;
+  height: 48pt;
   border-radius: 50%;
   background: var(--f7-theme-color);
   color: var(--f7-page-bg-color);
+  text-align: center;
+}
+
+.item-trip {
+  .trip-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+  }
+  .trip-destination {
+    font-size: 14px;
+    color: var(--f7-theme-color);
+    text-transform: uppercase;
+  }
 }
