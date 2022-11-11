@@ -25,28 +25,36 @@ import {
 } from 'framework7-react';
 import cordovaApp from '../js/cordova-app';
 
-import store from '../js/store';
 import {AppConfig} from "@/configs/app.config";
 import {StorageService} from "@/services/StorageService";
+import {store, useAppDispatch} from "@/redux/store";
+import {loadAppTrips} from "@/redux/actions/app.action";
+import {Provider} from "react-redux";
 
-const MyApp = () => {
+const AppContent = () => {
+  const dispatch = useAppDispatch();
   f7ready(async () => {
     // Init cordova APIs (see cordova-app.js)
     if (f7.device.cordova) {
       cordovaApp.init(f7);
     }
-
-    const data = await StorageService.getData("test", "dasfads");
-    console.log("data", data);
+    dispatch(loadAppTrips());
   });
 
   return (
     <App {...AppConfig} dark>
-
-      {/* Your main view, should have "view-main" class */}
       <View main className="safe-areas" url="/"/>
-
     </App>
+  )
+}
+
+const MyApp = () => {
+
+
+  return (
+    <Provider store={store}>
+      <AppContent/>
+    </Provider>
   )
 }
 export default MyApp;
