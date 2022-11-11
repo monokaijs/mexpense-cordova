@@ -71,3 +71,14 @@ body {
   background: var(--f7-theme-color);
   color: var(--f7-page-bg-color);
 }
+
+.item-trip {
+  .trip-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .trip-destination {
+    color: var(--f7-theme-color);
+    text-transform: uppercase;
+  }
+}

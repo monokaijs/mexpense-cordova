@@ -14,8 +14,12 @@ import {
 } from 'framework7-react';
 import {Trip} from "../types";
 import {StorageService} from "../services/StorageService";
+import {loadAppTrips} from "@/redux/actions/app.action";
+import {useAppDispatch} from "@/redux/store";
 
 const AddTripPage = () => {
+  const dispatch = useAppDispatch();
+
   const [tripName, setTripName] = useState('');
   const [tripDest, setTripDest] = useState('');
   const [tripDesc, setTripDesc] = useState('');
@@ -34,7 +38,7 @@ const AddTripPage = () => {
       requiresRiskAssessment: tripRequiresAssess
     }
     const newTripList = await StorageService.addTrip(trip);
-
+    dispatch(loadAppTrips());
   }
 
   return (
