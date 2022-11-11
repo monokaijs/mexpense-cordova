@@ -37,7 +37,7 @@ const HomePage = (props: any) => {
       }}/>
       {trips.filter(trip => trip.name.toLowerCase().includes(searchQuery.toLowerCase())).map((trip, id) => (
         <a
-          href={'/trip/'}
+          href={'/trip/' + trip.id + '/'}
           key={'trip' + id}
         >
           <Card

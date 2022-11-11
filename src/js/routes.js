@@ -7,7 +7,8 @@ import FormPage from '../pages/form.jsx';
 import DynamicRoutePage from '../pages/dynamic-route.jsx';
 import RequestAndLoad from '../pages/request-and-load.jsx';
 import NotFoundPage from '../pages/404.jsx';
-import AddTripPage from "@/pages/app-trip";
+import AddTripPage from "@/pages/add-trip";
+import TripDetailPage from "@/pages/TripDetail";
 
 var routes = [
   {
@@ -25,6 +26,10 @@ var routes = [
   {
     path: '/add-trip/',
     component: AddTripPage,
+  },
+  {
+    path: '/trip/:id/',
+    component: TripDetailPage,
   },
 
 

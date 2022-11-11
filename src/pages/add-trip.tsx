@@ -30,6 +30,7 @@ const AddTripPage = () => {
   // @ts-ignore
   const onFinish = async () => {
     const trip: Trip = {
+      id: new Date().getTime(),
       name: tripName,
       description: tripDesc,
       destination: tripDest,

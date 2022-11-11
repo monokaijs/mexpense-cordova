@@ -1,5 +1,5 @@
 import {NativeStorage} from "@awesome-cordova-plugins/native-storage";
-import {Trip} from "../types";
+import {Expense, Trip} from "../types";
 
 declare let window: any;
 
@@ -28,6 +28,19 @@ export class StorageService {
 
   static async getAllTrips() {
     return (await this.getData('trips', [])) as Trip[];
+  }
+
+  static async getTrip(tripId: number) {
+    const trips = await this.getAllTrips();
+    return trips.find(x => x.id.toString() === tripId.toString());
+  }
+
+  static async getAllExpenses() {
+    return (await this.getData('expenses', [])) as Expense[];
+  }
+
+  static async getAllTripExpenses(tripId: number) {
+    return (await this.getAllExpenses()).filter(expense => expense.tripId.toString() === tripId.toString());
   }
 
   static async addTrip(newTrip: Trip) {

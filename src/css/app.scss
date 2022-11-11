@@ -17,6 +17,13 @@ body {
   --f7-theme-color-tint: #c9f56c;
 
   --f7-page-bg-color: #21292E;
+  --f7-button-fill-text-color: #21292E;
+  --f7-block-title-text-color: #bbf246;
+
+  .dark {
+    --f7-block-title-text-color: #bbf246;
+    --f7-block-title-text-transform: uppercase;
+  }
 }
 
 /* Your app custom styles here */
@@ -83,5 +90,28 @@ body {
     font-size: 14px;
     color: var(--f7-theme-color);
     text-transform: uppercase;
+  }
+}
+
+.trip-detail-card {
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .name {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .controls {
+      display: flex;
+      flex-direction: row;
+      .button {
+        margin-left: 8px;
+      }
+    }
+  }
+  .body {
+    font-size: 14px;
   }
 }
