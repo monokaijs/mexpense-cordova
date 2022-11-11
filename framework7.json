@@ -1,0 +1,35 @@
+{
+  "cwd": "C:\\Users\\Admin\\WebstormProjects\\MExpense-Cordova",
+  "type": [
+    "cordova"
+  ],
+  "name": "M-Expense",
+  "framework": "react",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": "scss",
+  "theming": {
+    "customColor": true,
+    "color": "#bbf246",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false,
+  "pkg": "com.monokaijs.mexpense",
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen",
+      "cordova-plugin-device",
+      "cordova-plugin-file",
+      "cordova-plugin-media"
+    ]
+  }
+}
